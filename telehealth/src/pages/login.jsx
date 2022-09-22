@@ -1,11 +1,11 @@
 import React from 'react';
-import NavBar from '../components/home/AppBar';
+import MainTopHeader from '../components/headers/MainTopHeader';
 import LoginForm from '../components/login/loginForm';
 
 function Login() {
   return (
     <>
-      <NavBar />
+      <MainTopHeader />
       <LoginForm />
     </>
   );

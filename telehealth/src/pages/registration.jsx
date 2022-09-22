@@ -1,11 +1,11 @@
 import React from 'react';
-import NavBar from '../components/home/AppBar';
+import MainTopHeader from '../components/headers/MainTopHeader';
 import RegistrationForm from '../components/registration/registrationForm';
 
 function Registration() {
   return (
     <>
-      <NavBar />
+      <MainTopHeader />
       <RegistrationForm />
     </>
   );
