@@ -5,6 +5,8 @@ import PrivateRoute from './app/privateRoute';
 import BounceRoute from './app/bounce';
 import Login from './pages/login'
 import Registration from './pages/registration'
+import PatientSignUpForm from './pages/PatientSignUpForm';
+import HospitalSignUpForm from './pages/HospitalSignUpForm'
 
 
 import Home from './pages/Home'
@@ -17,6 +19,8 @@ function App() {
       <Route element={<BounceRoute />}>
         <Route path="login" element={<Login />} />
         <Route path="registration" element={<Registration />} />
+        <Route path='registration/patient' element={<PatientSignUpForm/>} />
+        <Route path='registration/hospital' element={<HospitalSignUpForm/>} />
       </Route>
     </Routes>
   );
