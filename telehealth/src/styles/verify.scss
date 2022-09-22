@@ -1,0 +1,10 @@
+@import './variable.scss';
+.verifyRequest {
+  color: $secondaryColor;
+  background-color: $primaryColor;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

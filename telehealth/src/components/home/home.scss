@@ -1,0 +1,14 @@
+$mainColor: rgb(255, 255, 255);
+
+body {
+  background-color: $mainColor;
+  color: rgb(33, 43, 54);
+}
+
+.welcome {
+  width: 100%;
+  height: 96vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
