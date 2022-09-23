@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import PrivateRoute from './app/privateRoute';
 import BounceRoute from './app/bounce';
 import Login from './pages/login'
+import Appointment from './pages/Appointment'
 import Registration from './pages/registration'
 import PatientSignUpForm from './pages/PatientSignUpForm';
 import HospitalSignUpForm from './pages/HospitalSignUpForm'
@@ -18,6 +19,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/health-practitioner" element={<HealthPractitioners />} />
+      <Route path="/appointment" element={<Appointment />} />
       <Route element={<BounceRoute />}>
         <Route path="login" element={<Login />} />
         <Route path="registration" element={<Registration />} />

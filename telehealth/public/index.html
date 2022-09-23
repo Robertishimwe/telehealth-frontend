@@ -34,6 +34,7 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <script src="https://unpkg.com/peerjs@1.4.5/dist/peerjs.min.js"></script>
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -59,4 +60,97 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
+  <!-- <script>
+    //geting my id
+    var phone = localStorage.getItem("phone");
+ 
+    if(phone == null || phone == "" || phone == undefined){
+     location.replace("index.html");
+      location.replace("index.html");
+    }
+    
+    var remoteVideo = document.getElementById('remoteVideo');
+       var mystream;
+ 
+     var peer = new Peer(`${phone}`); 
+ 
+     setTimeout(function(){
+         // var myid = peer.id;
+         console.log(peer.id);
+     },5000);
+       peer.on("open", function () {
+         // me.innerText += `Your device ID is: ${peer.id}`;
+       });
+         peer.on("call", function (call) {
+             console.log(">>>>>>>>>",phone);
+             const oop = document.getElementById("mee").innerText;
+             me.innerText = `${oop + call.peer}`;
+             // me.innerText += `Your device ID is: ${call.peer}`;
+            
+             // if (window.confirm("Do you want to accept this call?")) {
+                
+               call.answer(mystream);
+               call.on("stream", function (stream) {
+                 remoteVideo.srcObject = stream;
+               });
+             // }
+         });
+ //entering call reciver id
+    let code;
+    let conn;
+    function getStreamCode() {
+     code = window.prompt('Please enter number to call');
+     conn = peer.connect(code);
+     peer.on('connection', function(connection){
+     conn = connection;
+ });
+ 
+   }
+ 
+   // send call
+ const sendCall = ()=>{
+     getStreamCode();
+     const call = peer.call(code, mystream); // A
+     const oop = document.getElementById("mee").innerText;
+             me.innerText = `${oop + code}`;
+ 
+ call.on('stream', function(stream) { // B
+     remoteVideo.srcObject = stream; // C
+     remoteVideo.autoplay = true; // D
+     window.peerStream = stream; //E
+     // showConnectedContent(); //F    });
+ })
+ }
+ 
+ //answer a call
+ 
+ 
+   /// declaring variables
+ 
+       me = document.getElementById("mee");
+ 
+       
+ 
+       //video access
+ 
+ 
+         navigator.mediaDevices
+           .getUserMedia({ video: true, audio: true })
+           .then((stream) => {
+             var video = document.getElementsByTagName("video")[0];
+             mystream = stream; // A
+             video.srcObject = stream; // B
+             video.addEventListener("loadedmetadata", () => {
+               video.play();
+             });
+             video.muted = true;
+ 
+             console.log(stream);
+           })
+           .catch((err) => {
+             console.log("u got an error:" + err);
+           });
+       
+ 
+     </script> -->
 </html>

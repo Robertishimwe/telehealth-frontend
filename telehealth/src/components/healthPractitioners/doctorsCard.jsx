@@ -16,7 +16,7 @@ function DoctorsCard() {
               <p className="m-0">Dolor lorem eos dolor duo eirmod sea. Dolor sit magna rebum clita rebum dolor</p>
             </div>
             <div className="d-flex mt-auto border-top p-3" style={{display: 'flex', justifyContent:'center'}}>
-            <Link to="/registration/patient" className='btn btn-primary rounded-pill py-3 px-5 my-2'>Patient</Link>
+            <Link to="/appointment" className='btn btn-primary rounded-pill py-3 px-5 my-2'>Book appointment</Link>
               {/* <a className="btn btn-lg btn-primary btn-lg-square rounded-circle me-3" href="#"><i className="fab fa-twitter"></i></a>
               <a className="btn btn-lg btn-primary btn-lg-square rounded-circle me-3" href="#"><i className="fab fa-facebook-f"></i></a>
               <a className="btn btn-lg btn-primary btn-lg-square rounded-circle" href="#"><i className="fab fa-linkedin-in"></i></a> */}

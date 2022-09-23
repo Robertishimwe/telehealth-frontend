@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 function Hero() {
     return (
@@ -9,8 +10,11 @@ function Hero() {
                         {/* <h5 className="d-inline-block text-primary text-uppercase border-bottom border-5" style="border-color: rgba(256, 256, 256, .3) !important;">Welcome To Medinova</h5> */}
                         <h1 className="display-1 text-white mb-md-4">Best Healthcare Solution In Your City</h1>
                         <div className="pt-2">
-                            <a href="" className="btn btn-light rounded-pill py-md-3 px-md-5 mx-2">Find Doctor</a>
-                            <a href="" className="btn btn-outline-light rounded-pill py-md-3 px-md-5 mx-2">Appointment</a>
+                        <Link to="/health-practitioner" className='btn btn-light rounded-pill py-md-3 px-md-5 mx-2'>Find Doctor</Link>
+                        <Link to="/registration" className='btn btn-outline-light rounded-pill py-md-3 px-md-5 mx-2'>Get Started</Link>
+
+                            {/* <a href="" className="btn btn-light rounded-pill py-md-3 px-md-5 mx-2">Find Doctor</a>
+                            <a href="" className="btn btn-outline-light rounded-pill py-md-3 px-md-5 mx-2">Get Started</a> */}
                         </div>
                     </div>
                 </div>

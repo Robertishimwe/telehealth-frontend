@@ -2,10 +2,16 @@ import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form';
 import api from '../../utility/api';
 import jwtDecode from 'jwt-decode';
+import { useDispatch } from 'react-redux';
+
+import { logginUser } from '../../redux/features/auth/loginSlice';
+import { loginMode } from '../../redux/features/auth/isLoggedSlice';
 
 
 
 function LoginForm() {
+
+  const dispatch = useDispatch();
 
   const { register, handleSubmit, formState: { errors } } = useForm();
   const onSubmit = (data) => {
@@ -20,6 +26,9 @@ function LoginForm() {
         const decoded = jwtDecode(token);
         localStorage.setItem('token', token);
         localStorage.setItem('loggedUser', JSON.stringify(decoded))
+
+        dispatch(logginUser(decoded));
+        dispatch(loginMode());
       })
       .catch((err) => {
         const { error } = err?.response?.data;
