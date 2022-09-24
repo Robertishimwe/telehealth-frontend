@@ -19,12 +19,15 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/health-practitioner" element={<HealthPractitioners />} />
-      <Route path="/appointment/:id" element={<Appointment />} />
+      {/* <Route path="/appointment/:id" element={<Appointment />} /> */}
       <Route element={<BounceRoute />}>
         <Route path="login" element={<Login />} />
         <Route path="registration" element={<Registration />} />
         <Route path='registration/patient' element={<PatientSignUpForm/>} />
         <Route path='registration/hospital' element={<HospitalSignUpForm/>} />
+      </Route>
+      <Route element={<PrivateRoute />}>
+        <Route path="/appointment/:id" element={<Appointment />} />
       </Route>
     </Routes>
   );

@@ -6,7 +6,7 @@ function Appointment() {
   return (
     <div>
         <MainTopHeader/>
-        <h1 class="display-10" >Book Appointment</h1>
+        <h1 className="display-10" >Book Appointment</h1>
         <BookAppointment/>
     </div>
   )
