@@ -25,7 +25,7 @@ function AppAppBar() {
             href="/"
             sx={{ fontSize: 24 }}
           >
-            Barefoot Nomad
+            TOAS
           </Link>
           <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
             <Link
