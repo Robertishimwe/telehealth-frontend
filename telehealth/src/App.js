@@ -10,6 +10,9 @@ import PatientSignUpForm from './pages/PatientSignUpForm';
 import HospitalSignUpForm from './pages/HospitalSignUpForm'
 import HealthPractitioners from './pages/HealthPractitioners';
 
+import './css/bootstrap.min.css'
+import './css/style.css'
+
 
 import Home from './pages/Home'
 

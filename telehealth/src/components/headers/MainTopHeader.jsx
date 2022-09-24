@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { thisUser } from '../../redux/features/auth/loginSlice';
 
+import '../../css/bootstrap.min.css'
+import '../../css/style.css'
+
 
 function MainTopHeader() {
 
