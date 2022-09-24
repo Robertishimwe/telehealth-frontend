@@ -19,7 +19,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/health-practitioner" element={<HealthPractitioners />} />
-      <Route path="/appointment" element={<Appointment />} />
+      <Route path="/appointment/:id" element={<Appointment />} />
       <Route element={<BounceRoute />}>
         <Route path="login" element={<Login />} />
         <Route path="registration" element={<Registration />} />

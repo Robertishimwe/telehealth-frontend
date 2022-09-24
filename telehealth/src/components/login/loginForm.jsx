@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import api from '../../utility/api';
 import jwtDecode from 'jwt-decode';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
 import { logginUser } from '../../redux/features/auth/loginSlice';
 import { loginMode } from '../../redux/features/auth/isLoggedSlice';
@@ -31,15 +32,18 @@ function LoginForm() {
         dispatch(loginMode());
       })
       .catch((err) => {
-        const { error } = err?.response?.data;
-        window.alert((err?.response?.data.error) ? err?.response?.data.error : err?.response?.data.Message)
-        console.log("no", err?.response?.data)
+        toast.error((err?.response?.data.error) ? err?.response?.data.error : err?.response?.data.Message, {
+          position:'bottom-right',
+          autoClose: 5000,
+        })
+        // window.alert((err?.response?.data.error) ? err?.response?.data.error : err?.response?.data.Message)
+        
 
       });
 
   };
   // console.log(errors);
-
+console.log(errors)
 
   return (
     <div className="mainFormContainer">
@@ -50,9 +54,11 @@ function LoginForm() {
             <div className="row g-3">
               <div className="col-12 col-sm-12">
                 <input type="email" className="form-control bg-white border-0" placeholder="Enter Your Email" style={{ height: 55 }} {...register("email", { required: true, pattern: /^\S+@\S+$/i })} />
+                {errors.email?<p style={{color:'red'}}>{errors.email?.message}</p>: null}
               </div>
               <div className="col-12 col-sm-12">
                 <input type="password" className="form-control bg-white border-0" placeholder="Enter Your Password" style={{ height: 55 }} {...register("password", { required: true, maxLength: 20 })} />
+                {errors.password?<p style={{color:'red'}}>{errors.password?.message}</p>: null}
               </div>
 
               <div className="col-12">

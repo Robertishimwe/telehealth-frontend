@@ -1,9 +1,13 @@
 import React from 'react'
 import { useForm } from 'react-hook-form';
 import api from '../../utility/api';
-import jwtDecode from 'jwt-decode';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 function PatientRegistration() {
+
+  const navigate = useNavigate();
+
 
   const { register, handleSubmit, formState: { errors } } = useForm();
   const onSubmit = (data) => {
@@ -23,12 +27,24 @@ function PatientRegistration() {
       email
     })
       .then((res) => {
-        console.log(res)
+        toast.success("account created successful. you are going to be redirected to login page", {
+          position:'bottom-right',
+          autoClose: 5000,
+        })
+        setTimeout(()=>{
+          navigate('/login')
 
+        },4000)
+        
       })
       .catch((err) => {
 
-        window.alert((err?.response?.data.error) ? err?.response?.data.error : err?.response?.data.Message)
+        toast.error((err?.response?.data.error) ? err?.response?.data.error : err?.response?.data.Message, {
+          position:'bottom-right',
+          autoClose: 5000,
+        })
+
+        // window.alert((err?.response?.data.error) ? err?.response?.data.error : err?.response?.data.Message)
 
 
       });

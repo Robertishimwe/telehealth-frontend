@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { thisUser } from '../../redux/features/auth/loginSlice';
 
+
 function MainTopHeader() {
 
   const authenticated = useSelector(thisUser);
@@ -21,7 +22,7 @@ function MainTopHeader() {
           <div className="collapse navbar-collapse" id="navbarCollapse">
             <div className="navbar-nav ms-auto py-0">
               <Link to="/" className='nav-item nav-link'>Home</Link>
-              <Link to="/health-practitioner" className='nav-item nav-link'>Doctors/Nurses</Link>
+              <Link to="/health-practitioner" className='nav-item nav-link'>Doctors/nurses</Link>
               {authenticated.user ? <Link to="/dashboard" className='nav-item nav-link'>Account</Link> :
                 <>
                   <Link to="/registration" className='nav-item nav-link'>Register</Link>
