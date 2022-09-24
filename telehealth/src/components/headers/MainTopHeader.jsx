@@ -24,8 +24,8 @@ function MainTopHeader() {
           </button>
           <div className="collapse navbar-collapse" id="navbarCollapse">
             <div className="navbar-nav ms-auto py-0">
-              <Link to="/" className='nav-item nav-link'>Home</Link>
-              <Link to="/health-practitioner" className='nav-item nav-link'>Doctors/nurses</Link>
+              <div><Link to="/" className='nav-item nav-link'>Home</Link></div>
+              <div><Link to="/health-practitioner" className='nav-item nav-link'>Doctors/nurses</Link></div>
               {authenticated.user ? <Link to="/dashboard" className='nav-item nav-link'>Account</Link> :
                 <>
                   <Link to="/registration" className='nav-item nav-link'>Register</Link>
