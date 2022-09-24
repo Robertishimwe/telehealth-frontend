@@ -74,8 +74,9 @@ function BookAppointment() {
 			}}
 		>
       {openModel ? <CustomizedDialogs date={date} time={Time}/> :null }
-			<div style={{ width: '100%', backgroundColor: '#EFF5F9' }}>
+			<div style={{ width: '100%', backgroundColor: '#EFF5F9', display:"flex", justifyContent:"center", flexWrap:"wrap" }}>
 				<form onSubmit={handleSubmit(onSubmit)}>
+    <div style={{boarder: 1, boarderColo:"red"}}>
 					<div className='col-12 col-sm-6' style={{ marginLeft: 12 }}>
 						<br />
 						<p>Discribe your sickness</p>
@@ -101,8 +102,8 @@ function BookAppointment() {
 					</div>
 					<br />
 					<p style={{ marginLeft: 12 }}>Choose your preferred time slot</p>
-
-
+          </div>
+     <div style={{ width:'50%', display: 'flex', justifyContent:'center', flexWrap:'wrap'}}>
 					<Button
             onClick={()=>setTime(slots[0].time)}
 						type='submit'
@@ -328,6 +329,7 @@ function BookAppointment() {
 					>
 						{slots[14].time}
 					</Button>
+          </div>
 				</form>
 			</div>
 		</div>
