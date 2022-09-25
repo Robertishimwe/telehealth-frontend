@@ -8,6 +8,8 @@ import Appointment from './pages/Appointment';
 import Registration from './pages/registration';
 import DashboardApp from './pages/DashboardApp';
 import DashboardLayout from './layouts/index';
+import HospitalTable from './components/patients/HospitalTable';
+import PatientTable from './components/patients/PatientTable';
 import PatientSignUpForm from './pages/PatientSignUpForm';
 import HospitalSignUpForm from './pages/HospitalSignUpForm';
 import HealthPractitioners from './pages/HealthPractitioners';
@@ -31,6 +33,8 @@ function App() {
 			<Route element={<PrivateRoute />}>
 				<Route path='dashboard' element={<DashboardLayout />}>
 					<Route path='app' element={<DashboardApp />} />
+					<Route path='patients' element={<PatientTable />} />
+					<Route path='hospitals' element={<HospitalTable />} />
 				</Route>
 				<Route path='/appointment/:id' element={<Appointment />} />
 			</Route>
