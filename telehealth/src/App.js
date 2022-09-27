@@ -27,7 +27,6 @@ function App() {
 			<Route path='/' element={<Home />} />
 			<Route path='/health-practitioner' element={<HealthPractitioners />} />
 			<Route path='/test' element={<PatientAppointmentTable />} />
-			<Route path='/room/:roomId' element={<VideoConference />} />
 			<Route element={<BounceRoute />}>
 				<Route path='login' element={<Login />} />
 				<Route path='registration' element={<Registration />} />
@@ -42,6 +41,7 @@ function App() {
 					<Route path='appointments' element={<PatientAppointmentTable />} />
 				</Route>
 				<Route path='/appointment/:id' element={<Appointment />} />
+				<Route path='/room/:roomId' element={<VideoConference />} />
 			</Route>
 		</Routes>
 	);
