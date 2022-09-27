@@ -20,7 +20,7 @@ const navConfig = [
   },
   {
     title: 'Appointments',
-    path: '/dashboard/Appointments',
+    path: '/dashboard/appointments',
     icon: getIcon('teenyicons:appointments-solid'),
   },
   {

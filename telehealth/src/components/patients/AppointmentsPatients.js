@@ -1,51 +1,4 @@
-// import MaterialTable from 'material-table'
-// import tableIcons from './MaterialTableIcons';
-// import colors from '../../styles/colorVariables';
 
-// function DetailPanelWithRowClick() {
-//   console.log(tableIcons)
-//   return (
-//     <MaterialTable
-//     title="Users  Role setting"
-//     icons={tableIcons}
-//       columns={[
-//         { title: 'Name', field: 'name' },
-//         { title: 'Surname', field: 'surname' },
-//         { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-//         {
-//           title: 'Birth Place',
-//           field: 'birthCity',
-//           lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-//         },
-//       ]}
-//       data={[
-//         { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-//         { name: 'Zerya Betül', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-//       ]}
-//       // title="Detail Panel With RowClick Preview"
-//       detailPanel={rowData => {
-//         return (
-//           <iframe
-//             width="100%"
-//             height="315"
-//             src="https://www.youtube.com/embed/C0DPdy98e4c"
-//             frameborder="0"
-//             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-//             allowfullscreen
-//           />
-//         )
-//       }}
-//       onRowClick={(event, rowData, togglePanel) => togglePanel()}
-//     />
-//   )
-// }
-
-// export default DetailPanelWithRowClick
-
-
-
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import MaterialTable from 'material-table';
 import { TablePagination } from '@material-ui/core';
@@ -61,6 +14,8 @@ import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import VideoCallIcon from '@mui/icons-material/VideoCall';
+import CancelIcon from '@mui/icons-material/Cancel';
 import { ToastContainer, toast } from 'react-toastify';
 import colors from '../../styles/colorVariables';
 import myIcon from './MaterialTableIcons';
@@ -180,7 +135,7 @@ ConfirmationDialogRaw.propTypes = {
 
 const useStyles = makeStyles({});
 
-export default function HospitalTable() {
+export default function PatientAppointmentTable() {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState('Dione');
 
@@ -201,29 +156,37 @@ export default function HospitalTable() {
 
   useEffect(() => {
     const renderState = async () => {
-      const response = await api.get('/api/users/hospitals');
-      console.log(response.data)
-      setDataa(response.data);
+      const response = await api.get('/api/appointment/patient/my-appointments');
+      console.log(">>><<<",response.data.appointment)
+      setDataa(response.data.appointment);
     };
     renderState();
   }, []);
 
+
+const newDta = dataa.map((dataaa)=>{
+    return {_id:dataaa._id, date:dataaa.date, time:dataaa.time, healthPractional:`${dataaa.healthPractional.firstName} ${dataaa.healthPractional.lastName}`, status:dataaa.status, conferanceLink:dataaa.conferanceLink,hospital:dataaa.hospital.hospitalName}
+})
+
   const [state] = React.useState({
     columns: [
-      { title: 'Hospital name', field: 'hospitalName' },
-      { title: 'Email', field: 'email' },
-      { title: 'Location', field: 'location' },
+      { title: 'health Practitioner', field: 'healthPractional' },
+      { title: 'hospital', field: 'hospital' },
+      { title: 'date', field: 'date' },
+      { title: 'time', field: 'time' },
+      { title: 'status', field:'status'}
     ],
   });
-console.log(dataa)
+
+
   return (
     <>
       <ToastContainer />
       <MaterialTable
-        title="Hospitals"
+        title="Appointments"
         icons={myIcon}
         columns={state.columns}
-        data={dataa.users}
+        data={newDta}
         options={{
           actionsColumnIndex: -1,
           search: true,
@@ -245,6 +208,26 @@ console.log(dataa)
               handleClickListItem(userId);
             },
           },
+          {
+            icon: CancelIcon,
+            iconProps: { style: { fontSize: '16px', color: 'green' } },
+            tooltip: 'Cancel meeting',
+            onClick: (event, rowData) => {
+                const userId = rowData._id;
+                localStorage.setItem('cui', JSON.stringify(userId));
+                handleClickListItem(userId);
+            },
+          },
+          {
+            icon: VideoCallIcon,
+            iconProps: { style: { fontSize: '16px', color: 'green' } },
+            tooltip: 'join video call with health practitioner',
+            onClick: (event, rowData) => {
+              const VideoCallURL = rowData.conferanceLink;
+              window.open(VideoCallURL)
+            },
+          },
+          
         ]}
         components={{
           Pagination: (props) => (
