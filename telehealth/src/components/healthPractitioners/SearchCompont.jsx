@@ -1,6 +1,14 @@
-import React from 'react'
+import React, {useState} from 'react'
+import { useDispatch } from 'react-redux';
+import { searchQuery } from '../../redux/features/search/searchQuerySlice'
 
 function SearchCompont() {
+  const [query, setquery] = useState("")
+  const dispatch = useDispatch();
+
+  const onChangeHandler = (e) => {
+    dispatch(searchQuery(e.target.value));
+  }
   return (
     <>
       <div className="container-fluid bg-primary">
@@ -10,13 +18,13 @@ function SearchCompont() {
           </div>
           <div className="mx-auto" style={{ width: '100%', maxWidth: 600 }}>
             <div className="input-group">
-              <select className="form-select border-primary w-25" style={{ height: 60 }} defaultValue={'DEFAULT'}>
+              {/* <select className="form-select border-primary w-25" style={{ height: 60 }} defaultValue={'DEFAULT'}>
                 <option value="DEFAULT" disabled>choose category</option>
                 <option value="1">Department 1</option>
                 <option value="2">Department 2</option>
                 <option value="3">Department 3</option>
-              </select>
-              <input type="text" className="form-control border-primary w-50" placeholder="Keyword" />
+              </select> */}
+              <input type="text" className="form-control border-primary w-25 w-50" style={{ height: 60 }} placeholder="Keyword" onChange={onChangeHandler}/>
               <button className="btn btn-dark border-0 w-25">Search</button>
             </div>
           </div>

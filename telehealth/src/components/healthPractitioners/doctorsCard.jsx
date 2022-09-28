@@ -1,7 +1,8 @@
+import { Email } from '@material-ui/icons';
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-function DoctorsCard({DoctorName,Specialization,id,bio,img}) {
+function DoctorsCard({DoctorName,Specialization,id,workPlace,email,bio,img}) {
   return (
     <>
       <div className="team-item" style={{width:'46%', marginBottom:10, marginTop:20}}>
@@ -12,8 +13,9 @@ function DoctorsCard({DoctorName,Specialization,id,bio,img}) {
           <div className="col-12 col-sm-7 h-100 d-flex flex-column">
             <div className="mt-auto p-4">
               <h3>{DoctorName}</h3>
-              <h6 className="fw-normal fst-italic text-primary mb-4">{Specialization}</h6>
+              <h6 className="fw-normal fst-italic text-primary mb-4">{Specialization} - {workPlace}</h6>
               <p className="m-0">Dolor lorem eos dolor duo eirmod sea. Dolor sit magna rebum clita rebum dolor</p>
+              <p>Contact: <i>{email.email}</i></p>
             </div>
             <div className="d-flex mt-auto border-top p-3" style={{display: 'flex', justifyContent:'center'}}>
             <Link to={`/appointment/${id}`} className='btn btn-primary rounded-pill py-3 px-5 my-2'>Book appointment</Link>

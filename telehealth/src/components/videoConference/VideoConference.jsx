@@ -1,6 +1,6 @@
 import React from 'react'
 import AgoraRTM from 'agora-rtm-sdk'
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import Camera from './icons/camera.png'
 import Mic from './icons/mic.png'
@@ -9,6 +9,7 @@ import './main.css'
 
 function VideoConference() {
 
+  const navigate = useNavigate();
   const { roomId } = useParams();
 
   let APP_ID = "8776f4ebe5cf4c4d95a35d8891486034"
@@ -187,7 +188,12 @@ function VideoConference() {
           document.getElementById('mic-btn').style.backgroundColor = 'rgb(19, 197, 221)'
       }
   }
+
+  let toggleHangUp = async () => {
+    navigate('/dashboard/appointments')
+  }
     
+
   window.addEventListener('beforeunload', leaveChannel)
   
   // document.getElementById('camera-btn').addEventListener('click', toggleCamera)
@@ -216,11 +222,11 @@ function VideoConference() {
           <img src={Mic} alt="microphone"/>
         </div>
 
-        <a href="lobby.html">
+        {/* <a href="lobby.html"> */}
           <div className="control-container" id="leave-btn" >
-            <img src={Phone} alt="hangup"/>
+            <img src={Phone} alt="hangup" onClick={toggleHangUp}/>
           </div>
-        </a>
+        {/* </a> */}
 
       </div>
     </div>
