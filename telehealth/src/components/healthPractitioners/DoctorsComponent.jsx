@@ -15,7 +15,7 @@ const querys = useSelector(searchQuery);
 //update search query
 useEffect(() => {
 
-  setSearchQ(querys.payload.searchQuery.query.payload)
+  setSearchQ(querys?.payload?.searchQuery?.query?.payload)
 
 }, [querys])
 
