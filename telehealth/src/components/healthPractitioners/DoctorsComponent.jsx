@@ -31,7 +31,6 @@ useEffect(() => {
     })
       ////
       sethealthPractitioners(newDta)
-      console.log(res.data)
     })
     .catch((error)=>{
       console.log(error)
