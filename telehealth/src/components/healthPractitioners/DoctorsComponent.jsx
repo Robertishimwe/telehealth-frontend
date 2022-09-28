@@ -8,7 +8,7 @@ import DoctorsCard from './doctorsCard'
 function DoctorsComponent() {
 
 const [healthPractitioners, sethealthPractitioners] = useState([])
-const [searchQ, setSearchQ] = useState("")
+const [searchQ, setSearchQ] = useState("a")
 const querys = useSelector(searchQuery);
 
 
