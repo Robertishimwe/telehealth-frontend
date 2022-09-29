@@ -97,7 +97,7 @@ function ConfirmationDialogRaw(props) {
       {/* <DialogTitle>Prescribe patient</DialogTitle>
 
       <DialogContent dividers> */}
-      <div className="mainFormContainer" style={{width:'100%'}} onBlur={handleCancel}>
+      <div className="mainFormContainer" style={{width:'100%'}}>
       <div className="col-lg-4" style={{width:'100%'}}>
         <div className="bg-light text-center rounded p-5">
           <h2 className="mb-3">Prescribe patient</h2>
@@ -137,8 +137,9 @@ function ConfirmationDialogRaw(props) {
                 <input type="password" className="form-control bg-white border-0" placeholder="Enter Password" style={{ height: 40 }} />
               </div> */}
 
-              <div className="col-12">
-                <button className="btn btn-primary w-100 py-3" type="submit">Save</button>
+              <div className="col-12" style={{display: 'flex'}}>
+                <button className="btn btn-primary w-100 py-3" type="submit" style={{width:"25%"}}>Save</button>
+                <button type="button" className="btn btn-primary w-100 py-3" autoFocus onClick={handleCancel} style={{width:"25%", backgroundColor:"red"}}>Cancel</button>
               </div>
             </div>
           </form>
