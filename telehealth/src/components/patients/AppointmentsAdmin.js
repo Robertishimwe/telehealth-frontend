@@ -165,13 +165,14 @@ export default function PractitionerAppointmentTable() {
 
 
 const newDta = dataa.map((dataaa)=>{
-    return {_id:dataaa._id, date:dataaa.date, time:dataaa.time, patient:`${dataaa.patient.firstName} ${dataaa.patient.lastName}`,discriptionOfsickness:dataaa.discriptionOfsickness, status:dataaa.status, conferanceLink:dataaa.conferanceLink,hospital:dataaa.hospital.hospitalName}
+    return {_id:dataaa._id, date:dataaa.date, time:dataaa.time, patient:`${dataaa.patient.firstName} ${dataaa.patient.lastName}`,discriptionOfsickness:dataaa.discriptionOfsickness, status:dataaa.status, conferanceLink:dataaa.conferanceLink,hospital:dataaa.hospital.hospitalName, healthPractitioner: `${dataaa.healthPractional.firstName} ${dataaa.healthPractional.lastName}` }
 })
 
   const [state] = React.useState({
     columns: [
       { title: 'Patient', field: 'patient' },
-      { title: 'Discription of sickiness', field:'discriptionOfsickness' },
+      { title: 'Hospital', field:'hospital' },
+      { title: 'Health practitioner', field:'healthPractitioner' },
       { title: 'Date', field: 'date' },
       { title: 'Time', field: 'time' },
       { title: 'Status', field:'status'}
@@ -197,38 +198,38 @@ const newDta = dataa.map((dataaa)=>{
             color: colors.secondaryColor,
           },
         }}
-        actions={[
-          {
-            icon: ManageAccountsIcon,
-            iconProps: { style: { fontSize: '16px', color: 'green' } },
-            tooltip: 'Block user',
-            onClick: (event, rowData) => {
-              const userId = rowData._id;
-              localStorage.setItem('cui', JSON.stringify(userId));
-              handleClickListItem(userId);
-            },
-          },
-          {
-            icon: CancelIcon,
-            iconProps: { style: { fontSize: '16px', color: 'green' } },
-            tooltip: 'Cancel meeting',
-            onClick: (event, rowData) => {
-                const userId = rowData._id;
-                localStorage.setItem('cui', JSON.stringify(userId));
-                handleClickListItem(userId);
-            },
-          },
-          {
-            icon: VideoCallIcon,
-            iconProps: { style: { fontSize: '16px', color: 'green' } },
-            tooltip: 'join video call with health practitioner',
-            onClick: (event, rowData) => {
-              const VideoCallURL = rowData.conferanceLink;
-              window.open(VideoCallURL)
-            },
-          },
+        // actions={[
+        //   {
+        //     icon: ManageAccountsIcon,
+        //     iconProps: { style: { fontSize: '16px', color: 'green' } },
+        //     tooltip: 'Block user',
+        //     onClick: (event, rowData) => {
+        //       const userId = rowData._id;
+        //       localStorage.setItem('cui', JSON.stringify(userId));
+        //       handleClickListItem(userId);
+        //     },
+        //   },
+        //   {
+        //     icon: CancelIcon,
+        //     iconProps: { style: { fontSize: '16px', color: 'green' } },
+        //     tooltip: 'Cancel meeting',
+        //     onClick: (event, rowData) => {
+        //         const userId = rowData._id;
+        //         localStorage.setItem('cui', JSON.stringify(userId));
+        //         handleClickListItem(userId);
+        //     },
+        //   },
+        //   {
+        //     icon: VideoCallIcon,
+        //     iconProps: { style: { fontSize: '16px', color: 'green' } },
+        //     tooltip: 'join video call with health practitioner',
+        //     onClick: (event, rowData) => {
+        //       const VideoCallURL = rowData.conferanceLink;
+        //       window.open(VideoCallURL)
+        //     },
+        //   },
           
-        ]}
+        // ]}
         components={{
           Pagination: (props) => (
             <TablePagination

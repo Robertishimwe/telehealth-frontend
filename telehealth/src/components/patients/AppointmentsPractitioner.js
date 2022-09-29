@@ -14,6 +14,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import MedicationIcon from '@mui/icons-material/Medication';
 import VideoCallIcon from '@mui/icons-material/VideoCall';
 import CancelIcon from '@mui/icons-material/Cancel';
 import { ToastContainer, toast } from 'react-toastify';
@@ -87,22 +88,76 @@ function ConfirmationDialogRaw(props) {
   };
   return (
     <Dialog
-      sx={{ '& .MuiDialog-paper': { width: '80%', maxHeight: 435 } }}
-      maxWidth="xs"
+      sx={{ '& .MuiDialog-paper': { width: '60%', maxHeight: 435 } }}
+      maxWidth="s"
       TransitionProps={{ onEntering: handleEntering }}
       open={open}
       {...other}
     >
-      <DialogTitle>User Roles</DialogTitle>
+      {/* <DialogTitle>Prescribe patient</DialogTitle>
 
-      <DialogContent dividers>
-        <RadioGroup
+      <DialogContent dividers> */}
+      <div className="mainFormContainer" style={{width:'100%'}} onBlur={handleCancel}>
+      <div className="col-lg-4" style={{width:'100%'}}>
+        <div className="bg-light text-center rounded p-5">
+          <h2 className="mb-3">Prescribe patient</h2>
+          <form >
+            <div className="row g-3">
+              <div className="col-12 col-sm-12">
+                <input type="text" className="form-control bg-white border-0" placeholder="Enter medication condition Details" style={{ height: 40 }}  readOnly/>
+              </div>
+
+              <div className="col-12 col-sm-12" style={{display: 'flex', justifyContent:'space-around'}}>
+                <input type="text" className="form-control bg-white border-0" placeholder="Medication name" style={{ height: 40, width:'25%' }} required/>
+                <input type="text" className="form-control bg-white border-0" placeholder="Purpose" style={{ height: 40, width:'25%' }} required/>
+                <input type="text" className="form-control bg-white border-0" placeholder="Dosage" style={{ height: 40,  width:'20%' }} required/>
+                <input type="text" className="form-control bg-white border-0" placeholder="Frequency" style={{ height: 40,  width:'20%' }} required/>
+              </div>
+
+
+              <div className="col-12 col-sm-12" style={{display: 'flex', justifyContent:'space-around'}}>
+                <input type="text" className="form-control bg-white border-0" placeholder="Medication name" style={{ height: 40, width:'25%' }} />
+                <input type="text" className="form-control bg-white border-0" placeholder="Purpose" style={{ height: 40, width:'25%' }} />
+                <input type="text" className="form-control bg-white border-0" placeholder="Dosage" style={{ height: 40,  width:'20%' }} />
+                <input type="text" className="form-control bg-white border-0" placeholder="Frequency" style={{ height: 40,  width:'20%' }} />
+              </div>
+
+
+              <div className="col-12 col-sm-12" style={{display: 'flex', justifyContent:'space-around'}}>
+                <input type="text" className="form-control bg-white border-0" placeholder="Medication name" style={{ height: 40, width:'25%' }} />
+                <input type="text" className="form-control bg-white border-0" placeholder="Purpose" style={{ height: 40, width:'25%' }} />
+                <input type="text" className="form-control bg-white border-0" placeholder="Dosage" style={{ height: 40,  width:'20%' }} />
+                <input type="text" className="form-control bg-white border-0" placeholder="Frequency" style={{ height: 40,  width:'20%' }} />
+              </div>
+              {/* <div className="col-12 col-sm-12">
+                <input type="email" className="form-control bg-white border-0" placeholder="Enter hospital's email" style={{ height: 40 }} />
+              </div>
+
+              <div className="col-12 col-sm-12">
+                <input type="password" className="form-control bg-white border-0" placeholder="Enter Password" style={{ height: 40 }} />
+              </div> */}
+
+              <div className="col-12">
+                <button className="btn btn-primary w-100 py-3" type="submit">Save</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+        
+        {/* <RadioGroup
           ref={radioGroupRef}
           aria-label="ringtone"
           name="ringtone"
           value={value}
           onChange={handleChange}
         >
+
+
+
+
+        
           {options.map((option) => (
             <FormControlLabel
               value={option.value}
@@ -111,16 +166,16 @@ function ConfirmationDialogRaw(props) {
               label={option.name}
             />
           ))}
-        </RadioGroup>
-      </DialogContent>
+        </RadioGroup> */}
+      {/* </DialogContent>
       <DialogActions>
         <Button type="button" autoFocus onClick={handleCancel}>
           Cancel
         </Button>
         <Button type="button" onClick={handleOk}>
-          Assign
+          Prescribe
         </Button>
-      </DialogActions>
+      </DialogActions> */}
     </Dialog>
   );
 }
@@ -165,7 +220,7 @@ export default function PractitionerAppointmentTable() {
 
 
 const newDta = dataa.map((dataaa)=>{
-    return {_id:dataaa._id, date:dataaa.date, time:dataaa.time, patient:`${dataaa.patient.firstName} ${dataaa.patient.lastName}`,discriptionOfsickness:dataaa.discriptionOfsickness, status:dataaa.status, conferanceLink:dataaa.conferanceLink,hospital:dataaa.hospital.hospitalName}
+    return {_id:dataaa._id, date:dataaa.date, time:dataaa.time,patientId: dataaa.patient._id, patient:`${dataaa.patient.firstName} ${dataaa.patient.lastName}`,discriptionOfsickness:dataaa.discriptionOfsickness, status:dataaa.status, conferanceLink:dataaa.conferanceLink,hospital:dataaa.hospital.hospitalName}
 })
 
   const [state] = React.useState({
@@ -199,11 +254,12 @@ const newDta = dataa.map((dataaa)=>{
         }}
         actions={[
           {
-            icon: ManageAccountsIcon,
+            icon: MedicationIcon,
             iconProps: { style: { fontSize: '16px', color: 'green' } },
-            tooltip: 'Block user',
+            tooltip: 'Prescribe',
             onClick: (event, rowData) => {
               const userId = rowData._id;
+              localStorage.setItem('patientId', JSON.stringify(rowData.patientId));
               localStorage.setItem('cui', JSON.stringify(userId));
               handleClickListItem(userId);
             },

@@ -63,7 +63,8 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
   const { firstname,lastName, Role, hospitalName } = jwtDecode(token);
  
 
-  const fullName = `${firstname} ${lastName}`;
+  const fullName = Role =='hospitalAdmin' ? `${hospitalName}` : `${firstname} ${lastName}`;
+  // const fullName = `${firstname} ${lastName}`;
 
   console.log("fullname", fullName)
 
