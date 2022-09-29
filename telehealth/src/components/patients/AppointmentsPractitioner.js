@@ -98,15 +98,14 @@ function ConfirmationDialogRaw(props) {
     prescribedMedications.push({medicationName, purpose, Dosage, frequency})
 
     if(medicationName_1, purpose_1, Dosage_1, frequency_1) {
-    prescribedMedications.push({medicationName_1, purpose_1, Dosage_1, frequency_1})
+    prescribedMedications.push({medicationName:medicationName_1, purpose:purpose_1, Dosage:Dosage_1, frequency:frequency_1})
     }
 
     if(medicationName_2, purpose_2, Dosage_2, frequency_2){
-    prescribedMedications.push({medicationName_2, purpose_2, Dosage_2, frequency_2})
+    prescribedMedications.push({medicationName:medicationName_2, purpose:purpose_2, Dosage:Dosage_2, frequency:frequency_2})
     }
 
     const newData = {patient: patientid, medicationDetails, prescribedMedications}
-    console.log(">>>>>>>>>>>>>>>>data>>>>>>>>>>>>",newData)
 
     await api.post(`/api/prescription/add`, newData)
     .then((res)=>{
@@ -153,24 +152,24 @@ console.log(errors)
               <div className="col-12 col-sm-12" style={{display: 'flex', justifyContent:'space-around'}}>
                 <input type="text" className="form-control bg-white border-0" placeholder="Medication name" style={{ height: 40, width:'25%' }} {...register("medicationName", { required: true, maxLength: 70, minLength: 2 })}/>
                 <input type="text" className="form-control bg-white border-0" placeholder="Purpose" style={{ height: 40, width:'25%' }} {...register("purpose", { required: true, maxLength: 50, minLength: 2 })}/>
-                <input type="text" className="form-control bg-white border-0" placeholder="Dosage" style={{ height: 40,  width:'20%' }} {...register("Dosage", { required: true, maxLength: 20, minLength: 2 })}/>
-                <input type="text" className="form-control bg-white border-0" placeholder="Frequency" style={{ height: 40,  width:'20%' }} {...register("frequency", { required: true, maxLength: 20, minLength: 2 })}/>
+                <input type="text" className="form-control bg-white border-0" placeholder="Dosage" style={{ height: 40,  width:'20%' }} {...register("Dosage", { required: true, maxLength: 40, minLength: 2 })}/>
+                <input type="text" className="form-control bg-white border-0" placeholder="Frequency" style={{ height: 40,  width:'20%' }} {...register("frequency", { required: true, maxLength: 40, minLength: 2 })}/>
               </div>
 
 
               <div className="col-12 col-sm-12" style={{display: 'flex', justifyContent:'space-around'}}>
-                <input type="text" className="form-control bg-white border-0" placeholder="Medication name" style={{ height: 40, width:'25%' }} {...register("medicationName_1", { required: false, maxLength: 20, minLength: 2 })}/>
-                <input type="text" className="form-control bg-white border-0" placeholder="Purpose" style={{ height: 40, width:'25%' }}  {...register("purpose_1", { required: false, maxLength: 20, minLength: 2 })}/>
-                <input type="text" className="form-control bg-white border-0" placeholder="Dosage" style={{ height: 40,  width:'20%' }}  {...register("Dosage_1", { required: false, maxLength: 20, minLength: 2 })}/>
-                <input type="text" className="form-control bg-white border-0" placeholder="Frequency" style={{ height: 40,  width:'20%' }} {...register("frequency_1", { required: false, maxLength: 20, minLength: 2 })}/>
+                <input type="text" className="form-control bg-white border-0" placeholder="Medication name" style={{ height: 40, width:'25%' }} {...register("medicationName_1", { required: false, maxLength: 40, minLength: 2 })}/>
+                <input type="text" className="form-control bg-white border-0" placeholder="Purpose" style={{ height: 40, width:'25%' }}  {...register("purpose_1", { required: false, maxLength: 40, minLength: 2 })}/>
+                <input type="text" className="form-control bg-white border-0" placeholder="Dosage" style={{ height: 40,  width:'20%' }}  {...register("Dosage_1", { required: false, maxLength: 40, minLength: 2 })}/>
+                <input type="text" className="form-control bg-white border-0" placeholder="Frequency" style={{ height: 40,  width:'20%' }} {...register("frequency_1", { required: false, maxLength: 40, minLength: 2 })}/>
               </div>
 
 
               <div className="col-12 col-sm-12" style={{display: 'flex', justifyContent:'space-around'}}>
-                <input type="text" className="form-control bg-white border-0" placeholder="Medication name" style={{ height: 40, width:'25%' }} {...register("medicationName_2", { required: false, maxLength: 20, minLength: 2 })}/>
-                <input type="text" className="form-control bg-white border-0" placeholder="Purpose" style={{ height: 40, width:'25%' }} {...register("purpose_2", { required: false, maxLength: 20, minLength: 2 })}/>
-                <input type="text" className="form-control bg-white border-0" placeholder="Dosage" style={{ height: 40,  width:'20%' }} {...register("Dosage_2", { required: false, maxLength: 20, minLength: 2 })}/>
-                <input type="text" className="form-control bg-white border-0" placeholder="Frequency" style={{ height: 40,  width:'20%' }} {...register("frequency_2", { required: false, maxLength: 20, minLength: 2 })}/>
+                <input type="text" className="form-control bg-white border-0" placeholder="Medication name" style={{ height: 40, width:'25%' }} {...register("medicationName_2", { required: false, maxLength: 40, minLength: 2 })}/>
+                <input type="text" className="form-control bg-white border-0" placeholder="Purpose" style={{ height: 40, width:'25%' }} {...register("purpose_2", { required: false, maxLength: 40, minLength: 2 })}/>
+                <input type="text" className="form-control bg-white border-0" placeholder="Dosage" style={{ height: 40,  width:'20%' }} {...register("Dosage_2", { required: false, maxLength: 40, minLength: 2 })}/>
+                <input type="text" className="form-control bg-white border-0" placeholder="Frequency" style={{ height: 40,  width:'20%' }} {...register("frequency_2", { required: false, maxLength: 40, minLength: 2 })}/>
               </div>
               {/* <div className="col-12 col-sm-12">
                 <input type="email" className="form-control bg-white border-0" placeholder="Enter hospital's email" style={{ height: 40 }} />
