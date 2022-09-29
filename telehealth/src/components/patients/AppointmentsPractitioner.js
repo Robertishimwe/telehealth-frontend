@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import MaterialTable from 'material-table';
+import { useForm } from 'react-hook-form';
 import { TablePagination } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
@@ -30,6 +31,7 @@ const options = [
   { name: 'Admin', value: 3 },
 ];
 function ConfirmationDialogRaw(props) {
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const { onClose, value: valueProp, open, ...other } = props;
   const [value, setValue] = React.useState(valueProp);
   const radioGroupRef = React.useRef(null);
@@ -86,6 +88,47 @@ function ConfirmationDialogRaw(props) {
   const handleChange = (event) => {
     setValue(event.target.value);
   };
+
+  const onSubmit = async (data) => {
+    const patientid = JSON.parse(localStorage.getItem("patientId"))
+    const appointmentId = localStorage.getItem("cui")
+    const {medicationDetails,medicationName, purpose, Dosage, frequency,medicationName_1, purpose_1, Dosage_1, frequency_1,medicationName_2, purpose_2, Dosage_2, frequency_2} = data
+    const prescribedMedications = []
+
+    prescribedMedications.push({medicationName, purpose, Dosage, frequency})
+
+    if(medicationName_1, purpose_1, Dosage_1, frequency_1) {
+    prescribedMedications.push({medicationName_1, purpose_1, Dosage_1, frequency_1})
+    }
+
+    if(medicationName_2, purpose_2, Dosage_2, frequency_2){
+    prescribedMedications.push({medicationName_2, purpose_2, Dosage_2, frequency_2})
+    }
+
+    const newData = {patient: patientid, medicationDetails, prescribedMedications}
+    console.log(">>>>>>>>>>>>>>>>data>>>>>>>>>>>>",newData)
+
+    await api.post(`/api/prescription/add`, newData)
+    .then((res)=>{
+ 
+      toast.success("Prescription sent to patient", {
+        position:'bottom-right',
+        autoClose: 5000,
+      })
+      handleCancel()
+    })
+    .catch((err)=>{
+
+      toast.error("Something went worng", {
+        position:'bottom-right',
+        autoClose: 5000,
+      })
+      
+    })
+  }
+
+console.log(errors)
+
   return (
     <Dialog
       sx={{ '& .MuiDialog-paper': { width: '60%', maxHeight: 435 } }}
@@ -101,33 +144,33 @@ function ConfirmationDialogRaw(props) {
       <div className="col-lg-4" style={{width:'100%'}}>
         <div className="bg-light text-center rounded p-5">
           <h2 className="mb-3">Prescribe patient</h2>
-          <form >
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className="row g-3">
               <div className="col-12 col-sm-12">
-                <input type="text" className="form-control bg-white border-0" placeholder="Enter medication condition Details" style={{ height: 40 }}  readOnly/>
+                <input type="text" className="form-control bg-white border-0" placeholder="Enter medication condition Details" style={{ height: 40 }} {...register("medicationDetails", { required: true, maxLength: 70, minLength: 10 })}/>
               </div>
 
               <div className="col-12 col-sm-12" style={{display: 'flex', justifyContent:'space-around'}}>
-                <input type="text" className="form-control bg-white border-0" placeholder="Medication name" style={{ height: 40, width:'25%' }} required/>
-                <input type="text" className="form-control bg-white border-0" placeholder="Purpose" style={{ height: 40, width:'25%' }} required/>
-                <input type="text" className="form-control bg-white border-0" placeholder="Dosage" style={{ height: 40,  width:'20%' }} required/>
-                <input type="text" className="form-control bg-white border-0" placeholder="Frequency" style={{ height: 40,  width:'20%' }} required/>
-              </div>
-
-
-              <div className="col-12 col-sm-12" style={{display: 'flex', justifyContent:'space-around'}}>
-                <input type="text" className="form-control bg-white border-0" placeholder="Medication name" style={{ height: 40, width:'25%' }} />
-                <input type="text" className="form-control bg-white border-0" placeholder="Purpose" style={{ height: 40, width:'25%' }} />
-                <input type="text" className="form-control bg-white border-0" placeholder="Dosage" style={{ height: 40,  width:'20%' }} />
-                <input type="text" className="form-control bg-white border-0" placeholder="Frequency" style={{ height: 40,  width:'20%' }} />
+                <input type="text" className="form-control bg-white border-0" placeholder="Medication name" style={{ height: 40, width:'25%' }} {...register("medicationName", { required: true, maxLength: 70, minLength: 2 })}/>
+                <input type="text" className="form-control bg-white border-0" placeholder="Purpose" style={{ height: 40, width:'25%' }} {...register("purpose", { required: true, maxLength: 50, minLength: 2 })}/>
+                <input type="text" className="form-control bg-white border-0" placeholder="Dosage" style={{ height: 40,  width:'20%' }} {...register("Dosage", { required: true, maxLength: 20, minLength: 2 })}/>
+                <input type="text" className="form-control bg-white border-0" placeholder="Frequency" style={{ height: 40,  width:'20%' }} {...register("frequency", { required: true, maxLength: 20, minLength: 2 })}/>
               </div>
 
 
               <div className="col-12 col-sm-12" style={{display: 'flex', justifyContent:'space-around'}}>
-                <input type="text" className="form-control bg-white border-0" placeholder="Medication name" style={{ height: 40, width:'25%' }} />
-                <input type="text" className="form-control bg-white border-0" placeholder="Purpose" style={{ height: 40, width:'25%' }} />
-                <input type="text" className="form-control bg-white border-0" placeholder="Dosage" style={{ height: 40,  width:'20%' }} />
-                <input type="text" className="form-control bg-white border-0" placeholder="Frequency" style={{ height: 40,  width:'20%' }} />
+                <input type="text" className="form-control bg-white border-0" placeholder="Medication name" style={{ height: 40, width:'25%' }} {...register("medicationName_1", { required: false, maxLength: 20, minLength: 2 })}/>
+                <input type="text" className="form-control bg-white border-0" placeholder="Purpose" style={{ height: 40, width:'25%' }}  {...register("purpose_1", { required: false, maxLength: 20, minLength: 2 })}/>
+                <input type="text" className="form-control bg-white border-0" placeholder="Dosage" style={{ height: 40,  width:'20%' }}  {...register("Dosage_1", { required: false, maxLength: 20, minLength: 2 })}/>
+                <input type="text" className="form-control bg-white border-0" placeholder="Frequency" style={{ height: 40,  width:'20%' }} {...register("frequency_1", { required: false, maxLength: 20, minLength: 2 })}/>
+              </div>
+
+
+              <div className="col-12 col-sm-12" style={{display: 'flex', justifyContent:'space-around'}}>
+                <input type="text" className="form-control bg-white border-0" placeholder="Medication name" style={{ height: 40, width:'25%' }} {...register("medicationName_2", { required: false, maxLength: 20, minLength: 2 })}/>
+                <input type="text" className="form-control bg-white border-0" placeholder="Purpose" style={{ height: 40, width:'25%' }} {...register("purpose_2", { required: false, maxLength: 20, minLength: 2 })}/>
+                <input type="text" className="form-control bg-white border-0" placeholder="Dosage" style={{ height: 40,  width:'20%' }} {...register("Dosage_2", { required: false, maxLength: 20, minLength: 2 })}/>
+                <input type="text" className="form-control bg-white border-0" placeholder="Frequency" style={{ height: 40,  width:'20%' }} {...register("frequency_2", { required: false, maxLength: 20, minLength: 2 })}/>
               </div>
               {/* <div className="col-12 col-sm-12">
                 <input type="email" className="form-control bg-white border-0" placeholder="Enter hospital's email" style={{ height: 40 }} />
@@ -137,9 +180,9 @@ function ConfirmationDialogRaw(props) {
                 <input type="password" className="form-control bg-white border-0" placeholder="Enter Password" style={{ height: 40 }} />
               </div> */}
 
-              <div className="col-12" style={{display: 'flex'}}>
-                <button className="btn btn-primary w-100 py-3" type="submit" style={{width:"25%"}}>Save</button>
-                <button type="button" className="btn btn-primary w-100 py-3" autoFocus onClick={handleCancel} style={{width:"25%", backgroundColor:"red"}}>Cancel</button>
+              <div className="col-12" style={{display: 'flex', justifyContent:'space-between'}}>
+                <button className="btn btn-primary w-50 py-2" type="submit" style={{width:"5%", maxWidth:"5"}}>Save</button>
+                <button type="button" className="btn btn-primary w-50 py-2" autoFocus onClick={handleCancel} style={{width:"25%", backgroundColor:"red"}}>Cancel</button>
               </div>
             </div>
           </form>
