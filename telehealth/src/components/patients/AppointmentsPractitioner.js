@@ -126,7 +126,7 @@ function ConfirmationDialogRaw(props) {
     })
   }
 
-console.log(errors)
+// console.log(errors)
 
   return (
     <Dialog
@@ -255,7 +255,7 @@ export default function PractitionerAppointmentTable() {
   useEffect(() => {
     const renderState = async () => {
       const response = await api.get('/api/appointment/practioner/my-appointments');
-      console.log(">>>hello<<<",response.data.appointment)
+      // console.log(">>>hello<<<",response.data.appointment)
       setDataa(response.data.appointment);
     };
     renderState();
