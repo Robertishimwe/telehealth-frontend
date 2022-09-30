@@ -42,8 +42,6 @@ function LoginForm() {
       });
 
   };
-  // console.log(errors);
-console.log(errors)
 
   return (
     <div className="mainFormContainer">

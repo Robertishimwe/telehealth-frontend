@@ -12,7 +12,6 @@ function PrescriptionComponent() {
     api
       .get(`/api/prescription/thisprescription/${prescriptionId}`)
       .then((res) => {
-        // console.log(res.data.prescription[0])
         setdata(res.data.prescription[0])
      
       })

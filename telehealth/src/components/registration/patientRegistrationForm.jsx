@@ -16,7 +16,6 @@ function PatientRegistration() {
 
     let newDOB = dob.split('-')
     dob = `${newDOB[2]}/${newDOB[1]}/${newDOB[0]}`
-    console.log(dob)
 
     api.post(`/api/auth/register/patient`, {
       dob,

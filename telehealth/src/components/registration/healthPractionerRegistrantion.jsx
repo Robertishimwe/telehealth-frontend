@@ -17,8 +17,6 @@ function HealthPractitionerRegistration() {
 
     let newDOB = dob.split('-')
     dob = `${newDOB[2]}/${newDOB[1]}/${newDOB[0]}`
-    console.log(errors)
-    console.log(data)
 
     api.post(`/api/auth/register/healthPractional`, {
       dob,
@@ -33,7 +31,6 @@ function HealthPractitionerRegistration() {
     })
       .then((res) => {
 
-        console.log(res.data)
         toast.success("user register successful. you are going to be redirected to login page", {
           position:'bottom-right',
           autoClose: 5000,
@@ -45,7 +42,6 @@ function HealthPractitionerRegistration() {
         
       })
       .catch((err) => {
-        console.log(err)
 
         toast.error((err?.response?.data?.error) ? err?.response?.data?.error : err?.response?.data?.Message, {
           position:'bottom-right',
@@ -57,8 +53,6 @@ function HealthPractitionerRegistration() {
 
       });
   }
-  console.log(errors)
-
 
   return (
     <div style={{display:'flex', justifyContent:'center', width:'100%'}}>

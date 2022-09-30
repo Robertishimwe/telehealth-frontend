@@ -11,7 +11,6 @@ function ViewAppointment() {
 const authenticated = useSelector(thisUser);
 const Role = authenticated.user.payload.Role
 
-console.log(Role)
   return (
     <>
     {Role === 'healthPractitioner' ? <PractitionerAppointmentTable/> : (Role === 'patient' ? <PatientAppointmentTable/> :(Role === 'hospitalAdmin' ? <HealthCenterAdminAppointmentTable/>: <AdminAppointmentTable/>))}

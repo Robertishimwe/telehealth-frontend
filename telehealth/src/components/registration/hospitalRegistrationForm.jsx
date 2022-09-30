@@ -47,7 +47,6 @@ function HospitalRegistrationForm() {
       });
 
   }
-  console.log(errors)
   return (
     <div className="mainFormContainer">
       <div className="col-lg-4">

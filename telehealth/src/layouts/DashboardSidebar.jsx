@@ -66,7 +66,6 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
   const fullName = Role =='hospitalAdmin' ? `${hospitalName}` : `${firstname} ${lastName}`;
   // const fullName = `${firstname} ${lastName}`;
 
-  console.log("fullname", fullName)
 
   if (Role !== 'admin') {
     require('../styles/hideUser.scss');

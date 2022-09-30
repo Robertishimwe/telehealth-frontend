@@ -1,51 +1,3 @@
-// import MaterialTable from 'material-table'
-// import tableIcons from './MaterialTableIcons';
-// import colors from '../../styles/colorVariables';
-
-// function DetailPanelWithRowClick() {
-//   console.log(tableIcons)
-//   return (
-//     <MaterialTable
-//     title="Users  Role setting"
-//     icons={tableIcons}
-//       columns={[
-//         { title: 'Name', field: 'name' },
-//         { title: 'Surname', field: 'surname' },
-//         { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-//         {
-//           title: 'Birth Place',
-//           field: 'birthCity',
-//           lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-//         },
-//       ]}
-//       data={[
-//         { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-//         { name: 'Zerya Betül', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-//       ]}
-//       // title="Detail Panel With RowClick Preview"
-//       detailPanel={rowData => {
-//         return (
-//           <iframe
-//             width="100%"
-//             height="315"
-//             src="https://www.youtube.com/embed/C0DPdy98e4c"
-//             frameborder="0"
-//             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-//             allowfullscreen
-//           />
-//         )
-//       }}
-//       onRowClick={(event, rowData, togglePanel) => togglePanel()}
-//     />
-//   )
-// }
-
-// export default DetailPanelWithRowClick
-
-
-
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import MaterialTable from 'material-table';
 import { TablePagination } from '@material-ui/core';
@@ -202,7 +154,6 @@ export default function HospitalTable() {
   useEffect(() => {
     const renderState = async () => {
       const response = await api.get('/api/users/hospitals');
-      console.log(response.data)
       setDataa(response.data);
     };
     renderState();

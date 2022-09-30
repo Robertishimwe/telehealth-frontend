@@ -44,7 +44,6 @@ function BookAppointment() {
 
       api.post(`/api/appointment/booking`,appointment)
         .then((res) => {
-          console.log(res.data)
           setopenModel(true)
          
         })
@@ -53,16 +52,10 @@ function BookAppointment() {
             position:'bottom-right',
             autoClose: 5000,
           })
-          console.log(err)
         })
-   
-    
-		console.log(appointment);
 
 	};
 
-  
-	console.log(errors);
 
 	return (
 	

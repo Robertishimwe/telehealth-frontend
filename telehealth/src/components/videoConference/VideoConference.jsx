@@ -90,11 +90,9 @@ function VideoConference() {
           }
       }
   
-  
   }
   
   let handleUserJoined = async (MemberId) => {
-      console.log('A new user joined the channel:', MemberId)
       createOffer(MemberId)
   }
   

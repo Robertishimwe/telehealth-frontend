@@ -4,11 +4,10 @@ import { useSelector } from 'react-redux';
 import { searchQuery } from '../../redux/features/search/searchQuerySlice';
 import DoctorsCard from './doctorsCard'
 
-
 function DoctorsComponent() {
 
 const [healthPractitioners, sethealthPractitioners] = useState([])
-const [searchQ, setSearchQ] = useState(healthPractitioners)
+const [searchQ, setSearchQ] = useState([])
 const querys = useSelector(searchQuery);
 
 
@@ -49,13 +48,14 @@ const search = (di) => {
   );
 };
 
-const list = search(healthPractitioners)
-console.log(list)
+const list = searchQ ? search(healthPractitioners) : healthPractitioners
 
   return (
+    <>
     <div style={{width:'90%', display:'flex', justifyContent:"space-evenly", margin:'auto', flexWrap: 'wrap' }}> 
         {list.map((healthPractitioner)=>(<DoctorsCard key={healthPractitioner._id} DoctorName={healthPractitioner.name} Specialization={healthPractitioner.specialization} id={healthPractitioner._id} email={healthPractitioner} workPlace={healthPractitioner.workPlace} profilePicture={healthPractitioner?.profilePicture}/>))}
     </div>
+    </>
   )
 }
 

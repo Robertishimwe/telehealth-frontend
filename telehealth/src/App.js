@@ -19,6 +19,7 @@ import HealthPractitioners from './pages/HealthPractitioners';
 import PatientAppointmentTable from './components/patients/AppointmentsHA'
 import HealthPractitionerRegistration from './components/registration/healthPractionerRegistrantion';
 import ViewAppointment from './pages/ViewAppointment'
+import {Grid} from './components/loaders/Loader'
 
 import './css/bootstrap.min.css';
 import './css/style.css';
@@ -31,7 +32,7 @@ function App() {
 			<Route path='/' element={<Home />} />
 			<Route path='/health-practitioner' element={<HealthPractitioners />} />
 			<Route path='/prescription/:prescriptionId' element={<Prescription />} />
-			<Route path='/test' element={<HealthPractitionerRegistration />} />
+			<Route path='/test' element={<Grid/>} />
 			<Route path='*' element={<NotFound />} />
 	
 			<Route element={<BounceRoute />}>

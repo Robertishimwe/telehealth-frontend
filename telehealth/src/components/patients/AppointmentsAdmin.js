@@ -157,7 +157,6 @@ export default function PractitionerAppointmentTable() {
   useEffect(() => {
     const renderState = async () => {
       const response = await api.get('/api/appointment/admin/my-appointments');
-      console.log(">>>hello<<<",response.data.appointment)
       setDataa(response.data.appointment);
     };
     renderState();
