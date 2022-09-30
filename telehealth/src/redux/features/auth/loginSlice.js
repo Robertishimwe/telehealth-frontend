@@ -10,7 +10,6 @@ export const loginSlice = createSlice({
       user,
     }),
     loggoutUser: (state) => ({
-      ...state,
       value: '',
     }),
   },

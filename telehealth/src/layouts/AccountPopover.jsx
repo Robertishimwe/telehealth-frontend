@@ -21,7 +21,7 @@ import account from '../_mock/account';
 
 
 import { logoutMode } from '../redux/features/auth/isLoggedSlice';
-import { logginUser } from '../redux/features/auth/loginSlice';
+import { loggoutUser } from '../redux/features/auth/loginSlice';
 
 // ----------------------------------------------------------------------
 
@@ -64,13 +64,8 @@ export default function AccountPopover() {
   };
 
   const logout = () => {
-
-    setTimeout(()=>{
-      navigate('/login')
-    },1000)
-  
-    localStorage.removeItem('persist:root');
-    localStorage.removeItem('token');
+    dispatch(loggoutUser());
+    dispatch(logoutMode());
   };
 
   const token = localStorage.getItem("token")
