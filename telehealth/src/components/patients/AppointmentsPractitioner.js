@@ -140,8 +140,8 @@ function ConfirmationDialogRaw(props) {
 
       <DialogContent dividers> */}
       <div className="mainFormContainer" style={{width:'100%'}}>
-      <div className="col-lg-4" style={{width:'100%'}}>
-        <div className="bg-light text-center rounded p-5">
+      <div className="col-lg-24" style={{width:'100%'}}>
+        <div className="bg-light text-center rounded p-5" style={{width:'100%'}}>
           <h2 className="mb-3">Prescribe patient</h2>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="row g-3">
