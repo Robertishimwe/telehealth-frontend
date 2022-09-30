@@ -27,7 +27,7 @@ useEffect(() => {
     .then((res) => {
       /////
       const newDta = res.data.users.map((data)=>{
-        return {_id:data._id, name:`${data.firstName} ${data.lastName}`, workPlace:data.workPlace.hospitalName, specialization:data.specialization, email:data.email}
+        return {_id:data._id, name:`${data.firstName} ${data.lastName}`, workPlace:data.workPlace.hospitalName, specialization:data.specialization, email:data.email, profilePicture:data.profilePicture}
     })
       ////
       sethealthPractitioners(newDta)
@@ -50,11 +50,11 @@ const search = (di) => {
 };
 
 const list = search(healthPractitioners)
-
+console.log(list)
 
   return (
     <div style={{width:'90%', display:'flex', justifyContent:"space-evenly", margin:'auto', flexWrap: 'wrap' }}> 
-        {list.map((healthPractitioner)=>(<DoctorsCard key={healthPractitioner._id} DoctorName={healthPractitioner.name} Specialization={healthPractitioner.specialization} id={healthPractitioner._id} email={healthPractitioner} workPlace={healthPractitioner.workPlace}/>))}
+        {list.map((healthPractitioner)=>(<DoctorsCard key={healthPractitioner._id} DoctorName={healthPractitioner.name} Specialization={healthPractitioner.specialization} id={healthPractitioner._id} email={healthPractitioner} workPlace={healthPractitioner.workPlace} profilePicture={healthPractitioner?.profilePicture}/>))}
     </div>
   )
 }

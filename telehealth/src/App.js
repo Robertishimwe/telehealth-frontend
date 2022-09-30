@@ -17,6 +17,7 @@ import PatientSignUpForm from './pages/PatientSignUpForm';
 import HospitalSignUpForm from './pages/HospitalSignUpForm';
 import HealthPractitioners from './pages/HealthPractitioners';
 import PatientAppointmentTable from './components/patients/AppointmentsHA'
+import HealthPractitionerRegistration from './components/registration/healthPractionerRegistrantion';
 import ViewAppointment from './pages/ViewAppointment'
 
 import './css/bootstrap.min.css';
@@ -30,7 +31,7 @@ function App() {
 			<Route path='/' element={<Home />} />
 			<Route path='/health-practitioner' element={<HealthPractitioners />} />
 			<Route path='/prescription/:prescriptionId' element={<Prescription />} />
-			<Route path='/test' element={<PatientAppointmentTable />} />
+			<Route path='/test' element={<HealthPractitionerRegistration />} />
 			<Route path='*' element={<NotFound />} />
 	
 			<Route element={<BounceRoute />}>
@@ -44,6 +45,7 @@ function App() {
 					<Route path='app' element={<DashboardApp />} />
 					<Route path='patients' element={<PatientTable />} />
 					<Route path='hospitals' element={<HospitalTable />} />
+					<Route path='add-employee' element={<HealthPractitionerRegistration />} />
 					<Route path='appointments' element={<ViewAppointment />} />
 				</Route>
 				<Route path='/appointment/:id' element={<Appointment />} />

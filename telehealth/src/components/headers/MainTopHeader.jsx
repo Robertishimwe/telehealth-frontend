@@ -26,7 +26,7 @@ function MainTopHeader() {
             <div className="navbar-nav ms-auto py-0">
               <div><Link to="/" className='nav-item nav-link'>Home</Link></div>
               <div><Link to="/health-practitioner" className='nav-item nav-link'>Doctors/nurses</Link></div>
-              {authenticated.user ? <Link to="/dashboard" className='nav-item nav-link'>Account</Link> :
+              {authenticated.user ? <Link to="/dashboard/app" className='nav-item nav-link'>Account</Link> :
                 <>
                   <Link to="/registration" className='nav-item nav-link'>Register</Link>
                   <Link to="/login" className='nav-item nav-link'>Login</Link>
