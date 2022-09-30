@@ -4,7 +4,9 @@ import { Route, Routes } from 'react-router-dom';
 import PrivateRoute from './app/privateRoute';
 import BounceRoute from './app/bounce';
 import Login from './pages/login';
+import NotFound from './pages/NotFound';
 import Appointment from './pages/Appointment';
+import Prescription from './pages/Prescription'
 import Registration from './pages/registration';
 import DashboardApp from './pages/DashboardApp';
 import DashboardLayout from './layouts/index';
@@ -27,7 +29,10 @@ function App() {
 		<Routes>
 			<Route path='/' element={<Home />} />
 			<Route path='/health-practitioner' element={<HealthPractitioners />} />
+			<Route path='/prescription/:prescriptionId' element={<Prescription />} />
 			<Route path='/test' element={<PatientAppointmentTable />} />
+			<Route path='*' element={<NotFound />} />
+	
 			<Route element={<BounceRoute />}>
 				<Route path='login' element={<Login />} />
 				<Route path='registration' element={<Registration />} />
@@ -43,6 +48,7 @@ function App() {
 				</Route>
 				<Route path='/appointment/:id' element={<Appointment />} />
 				<Route path='/room/:roomId' element={<VideoConference />} />
+				<Route path='/prescription/:prescriptionId' element={<VideoConference />} />
 			</Route>
 		</Routes>
 	);

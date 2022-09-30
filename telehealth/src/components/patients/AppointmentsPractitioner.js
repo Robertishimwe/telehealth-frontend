@@ -91,7 +91,7 @@ function ConfirmationDialogRaw(props) {
 
   const onSubmit = async (data) => {
     const patientid = JSON.parse(localStorage.getItem("patientId"))
-    const appointmentId = localStorage.getItem("cui")
+    const appointment = JSON.parse(localStorage.getItem("cui"))
     const {medicationDetails,medicationName, purpose, Dosage, frequency,medicationName_1, purpose_1, Dosage_1, frequency_1,medicationName_2, purpose_2, Dosage_2, frequency_2} = data
     const prescribedMedications = []
 
@@ -105,7 +105,7 @@ function ConfirmationDialogRaw(props) {
     prescribedMedications.push({medicationName:medicationName_2, purpose:purpose_2, Dosage:Dosage_2, frequency:frequency_2})
     }
 
-    const newData = {patient: patientid, medicationDetails, prescribedMedications}
+    const newData = {patient: patientid, medicationDetails,appointment, prescribedMedications}
 
     await api.post(`/api/prescription/add`, newData)
     .then((res)=>{
