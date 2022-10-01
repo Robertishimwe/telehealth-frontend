@@ -212,10 +212,19 @@ const newDta = dataa.map((dataaa)=>{
             icon: CancelIcon,
             iconProps: { style: { fontSize: '16px', color: 'green' } },
             tooltip: 'Cancel meeting',
-            onClick: (event, rowData) => {
-                const userId = rowData._id;
-                localStorage.setItem('cui', JSON.stringify(userId));
-                handleClickListItem(userId);
+            onClick: async (event, rowData) => {
+                const appointmentId = rowData._id;
+
+              await api.patch(`/api/appointment/petients/cancel/${appointmentId}`)
+                .then(() => {
+                  toast.success('Appointment cancelled successfully', {
+                    position: 'bottom-right',
+                  });
+                })
+                .catch((error)=>{
+                  toast.error('somrthing went wrong',{position: 'bottom-right'})
+                })
+
             },
           },
           {
