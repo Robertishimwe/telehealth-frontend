@@ -4,18 +4,18 @@
     box-sizing: border-box;
 }
 
-/* #videos{
+#videos{
     display: grid;
     grid-template-columns: 1fr;
     height: 100vh;
     overflow:hidden;
-} */
+}
 
 .video-player{
     background-color: black;
     width: 100%;
     height: 100%;
-    /* object-fit: cover; */
+    object-fit: cover;
 }
 
 #user-2{
