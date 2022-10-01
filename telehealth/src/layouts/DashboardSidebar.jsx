@@ -67,8 +67,31 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
   // const fullName = `${firstname} ${lastName}`;
 
 
-  if (Role !== 'admin') {
+  if (Role !== 'adminkk') {
     require('../styles/hideUser.scss');
+
+  }
+  if(Role == 'admin'){
+    require('../styles/addEmployHider.scss');
+  }
+
+  if (Role === 'hospitalAdmin') {
+    require('../styles/hospitalHider.scss');
+    require('../styles/patientHider.scss');
+    
+  }
+
+  if (Role == 'healthPractitioner') {
+    require('../styles/hospitalHider.scss');
+    require('../styles/patientHider.scss');
+    require('../styles/addEmployHider.scss');
+    
+  }
+
+  if (Role === 'patient') {
+    require('../styles/hospitalHider.scss');
+    require('../styles/patientHider.scss');
+    require('../styles/addEmployHider.scss');
   }
 
   useEffect(() => {
