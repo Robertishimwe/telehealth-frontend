@@ -2,10 +2,11 @@ import React, { useState,useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import html2pdf from 'html2pdf.js'
 import api from '../../utility/api';
+import {Grid} from '../loaders/Loader'
 import '../../styles/prescription.scss'
 
 function PrescriptionComponent() {
-  const [data, setdata] = useState("loading......") 
+  const [data, setdata] = useState() 
   const { prescriptionId } = useParams();
 
   useEffect(() => {
@@ -27,6 +28,8 @@ function PrescriptionComponent() {
   }
 
   return (
+		<>{data? 
+
 		<>
 			<div class='Printbtn'>
 				<button
@@ -116,6 +119,7 @@ function PrescriptionComponent() {
 					</div>
 				</div>
 			</div>
+			</>: <div style={{width:'100%', height:'80vh', display:'flex', justifyContent:'center', alignItems:'center'}}><Grid/></div>}
 		</>
 	);
 }

@@ -9,6 +9,7 @@ import Appointment from './pages/Appointment';
 import Prescription from './pages/Prescription'
 import Registration from './pages/registration';
 import DashboardApp from './pages/DashboardApp';
+import MedicalRecord from './pages/MedicalRecord'
 import DashboardLayout from './layouts/index';
 import HospitalTable from './components/patients/HospitalTable';
 import PatientTable from './components/patients/PatientTable';
@@ -16,6 +17,7 @@ import VideoConference from './components/videoConference/VideoConference'
 import PatientSignUpForm from './pages/PatientSignUpForm';
 import HospitalSignUpForm from './pages/HospitalSignUpForm';
 import HealthPractitioners from './pages/HealthPractitioners';
+import CustomizedAccordions from './components/medicalHistory/Accordion';
 import PatientAppointmentTable from './components/patients/AppointmentsHA'
 import HealthPractitionerRegistration from './components/registration/healthPractionerRegistrantion';
 import ViewAppointment from './pages/ViewAppointment'
@@ -32,7 +34,7 @@ function App() {
 			<Route path='/' element={<Home />} />
 			<Route path='/health-practitioner' element={<HealthPractitioners />} />
 			<Route path='/prescription/:prescriptionId' element={<Prescription />} />
-			<Route path='/test' element={<Grid/>} />
+			<Route path='/test/:patientId' element={<CustomizedAccordions/>} />
 			<Route path='*' element={<NotFound />} />
 	
 			<Route element={<BounceRoute />}>
@@ -48,6 +50,7 @@ function App() {
 					<Route path='hospitals' element={<HospitalTable />} />
 					<Route path='add-employee' element={<HealthPractitionerRegistration />} />
 					<Route path='appointments' element={<ViewAppointment />} />
+					<Route path='history/:patientId' element={<MedicalRecord/>} />
 				</Route>
 				<Route path='/appointment/:id' element={<Appointment />} />
 				<Route path='/room/:roomId' element={<VideoConference />} />

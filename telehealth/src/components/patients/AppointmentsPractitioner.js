@@ -1,5 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import MaterialTable from 'material-table';
 import { useForm } from 'react-hook-form';
 import { TablePagination } from '@material-ui/core';
@@ -14,6 +15,7 @@ import Dialog from '@mui/material/Dialog';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import HistoryIcon from '@mui/icons-material/History';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import MedicationIcon from '@mui/icons-material/Medication';
 import VideoCallIcon from '@mui/icons-material/VideoCall';
@@ -146,7 +148,7 @@ function ConfirmationDialogRaw(props) {
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="row g-3">
               <div className="col-12 col-sm-12">
-                <input type="text" className="form-control bg-white border-0" placeholder="Enter medication condition Details" style={{ height: 40 }} {...register("medicationDetails", { required: true, maxLength: 70, minLength: 10 })}/>
+                <input type="text" className="form-control bg-white border-0" placeholder="Enter medication condition Details" style={{ height: 40 }} {...register("medicationDetails", { required: true, maxLength: 7000, minLength: 5 })}/>
               </div>
 
               <div className="col-12 col-sm-12" style={{display: 'flex', justifyContent:'space-around'}}>
@@ -236,6 +238,7 @@ const useStyles = makeStyles({});
 export default function PractitionerAppointmentTable() {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState('Dione');
+  const navigate = useNavigate();
 
   const handleClickListItem = () => {
     setOpen(true);
@@ -296,6 +299,19 @@ const newDta = dataa.map((dataaa)=>{
           },
         }}
         actions={[
+          {
+            icon: HistoryIcon,
+            iconProps: { style: { fontSize: '16px', color: 'green' } },
+            tooltip: 'Medical History',
+            onClick: (event, rowData) => {
+              const userId = rowData.patientId;
+              navigate(`/dashboard/history/${userId}`);
+              // localStorage.setItem('patientId', JSON.stringify(rowData.patientId));
+              // localStorage.setItem('cui', JSON.stringify(userId));
+              // handleClickListItem(userId);
+            },
+          },
+
           {
             icon: MedicationIcon,
             iconProps: { style: { fontSize: '16px', color: 'green' } },
