@@ -206,7 +206,7 @@ function VideoConference() {
   return (
     <div>
       <div id="videos">
-        <video className="video-player" id="user-1" autoPlay playsInline></video>
+        <video className="video-player" id="user-1" autoPlay playsInline mute></video>
         <video className="video-player" id="user-2" autoPlay playsInline></video>
       </div>
 
