@@ -5,6 +5,6 @@ if (localStorage.token) {
   headers.token = `${localStorage.token}`;
 }
 export default axios.create({
-  baseURL: 'http://localhost:9000',
+  baseURL: 'https://telehealth-frontend-telehealth-islx.vercel.app',
   headers,
 });
